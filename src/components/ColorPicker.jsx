@@ -12,7 +12,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@mui/material/TextField';
 import Popover from '@mui/material/Popover';
-import { StylesProvider, createGenerateClassName, makeStyles } from '@mui/styles';
+import { StylesProvider, createGenerateClassName } from '@mui/styles';
+import { useStyles } from './ColorPicker.style';
 
 import ColorButton from './ColorButton';
 import ColorBox from './ColorBox';
@@ -20,17 +21,6 @@ import * as ColorTool from '../helpers/colorTool';
 import uncontrolled from '../helpers/uncontrolled';
 import * as CommonTypes from '../helpers/commonTypes';
 import useTranslate from '../helpers/useTranslate';
-
-const useStyles = makeStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: 'max-content',
-  },
-  colorpickerButton: {
-    margin: 6,
-  },
-});
 
 const generateClassName = createGenerateClassName({
   seed: 'ColorPicker',
@@ -64,6 +54,7 @@ const ColorPicker = ({
   hslGradient,
   hideTextfield,
   disablePlainColor,
+  ...custom
 }) => {
   const classes = useStyles();
   const refPicker = useRef(null);
@@ -142,7 +133,7 @@ const ColorPicker = ({
         {color.raw}
       </div>
     ) : (
-      <TextField color="primary" value={raw} onChange={handleChange} data-testid="colorpicker-input" />
+      <TextField color="primary" value={raw} onChange={handleChange} data-testid="colorpicker-input" {...custom} />
     );
   }
 
@@ -151,7 +142,7 @@ const ColorPicker = ({
       <div ref={refPicker} className={classes.root}>
         <ColorButton
           data-testid="colorpicker-button"
-          className={`muicc-colorpicker-button ${classes.colorpickerButton}`}
+          className={`muicc-colorpicker-button ${classes.colorPickerButton}`}
           color={color}
           onClick={handleClick}
         />
@@ -173,7 +164,7 @@ ColorPicker.propTypes = {
   openAtStart: PropTypes.bool,
   doPopup: PropTypes.func,
   /**
-    Don't use alpha
+   Don't use alpha
    */
   disableAlpha: PropTypes.bool,
   hslGradient: PropTypes.bool,

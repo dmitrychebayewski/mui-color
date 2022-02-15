@@ -37,6 +37,12 @@ Basic.story = {
   parameters: { defaultValue: '#000' },
 };
 
+export const Embedded = () => <ColorPicker defaultValue="#000" variant="outlined" fullWidth />;
+
+Embedded.story = {
+  parameters: { defaultValue: '#000', variant: "outlined", fullWidth: true},
+};
+
 export const OpenAtStart = () => <ColorPicker defaultValue="#000" openAtStart />;
 OpenAtStart.story = {
   parameters: { defaultValue: '#000', openAtStart: true },
@@ -94,7 +100,7 @@ const Controller = ({ value }) => {
           set rgb(255, 0, 0)
         </Button>
         <div style={{ paddingTop: '180px', marginLeft: '-28px', color: '#999', fontSize: '12px' }}>
-          https://github.com/mikbry/material-ui-color
+          https://github.com/dmitrychebayewski/material-ui-color/tree/props_to_text_field
         </div>
       </div>
       <div

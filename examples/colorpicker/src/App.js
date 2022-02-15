@@ -4,7 +4,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { ColorPicker, createColor } from "material-ui-color";
+import { ColorPicker, createColor } from "@dmitrychebayewski/mui-color";
 
 const theme = createTheme({
   palette: {}

@@ -76,8 +76,8 @@ const useStyles = makeStyles({
 });
 
 /**
-- Use a ColorButton to select a predefined color by clicking on this button.
-- If the color is not valid or transparent a crossed background is displayed.
+ - Use a ColorButton to select a predefined color by clicking on this button.
+ - If the color is not valid or transparent a crossed background is displayed.
  */
 const ColorButton = ({
   color: c,
@@ -133,31 +133,31 @@ const ColorButton = ({
 
 ColorButton.propTypes = {
   /**
-    The color to display, could be a css valid string, an integer, or a Color object see  ColorType
+   The color to display, could be a css valid string, an integer, or a Color object see  ColorType
    */
   color: CommonTypes.color.isRequired,
   /**
-    The size of the button in pixel
+   The size of the button in pixel
    */
   size: PropTypes.number,
   /**
-    Don't use alpha
+   Don't use alpha
    */
   disableAlpha: PropTypes.bool,
   /**
-    The width of the button's border, not displayed if borderWidth=0
+   The width of the button's border, not displayed if borderWidth=0
    */
   borderWidth: PropTypes.number,
   /**
-    The css color of the button's border, not displayed if borderWidth=0
+   The css color of the button's border, not displayed if borderWidth=0
    */
   borderColor: PropTypes.string,
   /**
-    A tooltip could be added to the button to display the color name or value
+   A tooltip could be added to the button to display the color name or value
    */
   tooltip: PropTypes.string,
   /**
-    Internal usage
+   Internal usage
    */
   forwardRef: PropTypes.shape({ current: PropTypes.elementType }),
 };

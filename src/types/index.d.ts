@@ -1,4 +1,6 @@
-declare module 'mui-color' {
+import {TextFieldProps} from '@mui/material/TextField';
+
+declare module '@dmitrychebayewski/mui-color' {
 
   enum ColorFormat {
     "plain",
@@ -21,7 +23,7 @@ declare module 'mui-color' {
     hsv: [number, number, number];
     hsl: [number, number, number];
   }
-  
+
   interface ColorError extends ColorObject {
     name: "none";
     error: "Wrong format" | "Not an hex value";
@@ -37,12 +39,12 @@ declare module 'mui-color' {
   interface ColorType extends ColorObject {
     format: ColorFormat;
   }
-  
+
   type Color = ColorType | ColorError;
   type ColorValue = Color | string | number | Array<string | number>;
   type PaletteRecord = Record<string,string>;
 
-  interface ColorPickerProps {
+  interface ColorPickerProps extends Omit<TextFieldProps, 'onChange'>{
     value?: ColorValue;
     defaultValue?: ColorValue;
     disableTextfield?: boolean;
@@ -68,24 +70,24 @@ declare module 'mui-color' {
 
   interface ColorButtonProps {
     /**
-    The color to display, could be a css valid string, an integer, or a Color object see  ColorType
-   */
+     The color to display, could be a css valid string, an integer, or a Color object see  ColorType
+     */
     color: ColorValue;
     /**
-    The size of the button in pixel
-   */
+     The size of the button in pixel
+     */
     size?: number;
     /**
-    The width of the button's border, not displayed if borderWidth=0
-   */
+     The width of the button's border, not displayed if borderWidth=0
+     */
     borderWidth?: number;
     /**
-    The css color of the button's border, not displayed if borderWidth=0
-   */
+     The css color of the button's border, not displayed if borderWidth=0
+     */
     borderColor?: string;
     /**
-    A tooltip could be added to the button to display the color name or value
-   */
+     A tooltip could be added to the button to display the color name or value
+     */
     tooltip?: string;
   }
 
@@ -126,7 +128,7 @@ declare module 'mui-color' {
   interface i18n {
     language: string;
   }
-  
+
   interface Translation {
     t: typeof TFunction,
     i18n?: i18n;

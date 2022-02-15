@@ -33,13 +33,11 @@
 
 > Collections of color components for [material-ui](https://github.com/mui-org/material-ui). No dependencies, small, highly customizable and theming support !
 
-
-
-![Video of ColorPicker](./images/muicc-v0-2.webp)
+![Video of ColorPicker](./images/muicc-v0-3.webp)
 
 ## Contents
-
-- [Why another ColorPicker?](#why-another-colorpicker)
+- [Why rework Mikbry's project?](#Why-rework-Mikbry's-project?)
+- [Why another ColorPicker?](#Why-another-ColorPicker-?)
 - [Documentation](#documentation)
 - [Requirements](#requirements)
 - [Install](#install)
@@ -47,6 +45,12 @@
 - [Roadmap](#roadmap)
 - [Contribute](#contribute)
 - [License](#license)
+
+## Why rework Mikbry's project?
+- Plans are submitting PR into his mui-color project, but I need enhanced Color Picker MUI 4 for a limited time;
+- Allows passing useful properties to material-ui TextField underlying component;
+- Stable version 1.2.0 codebase, Material UI V.4;
+- ColorPicker adornment: Button, embedded in the underlying TextField (similarly to material-ui-pickers experience).
 
 ## Why another ColorPicker ?
 
@@ -62,7 +66,7 @@ Full documentation is available here :
 
 https://mikbry.github.io/mui-color/
 
-### Examples 
+### Examples
 
 > You can find examples [here](EXAMPLES.md) and [here](/examples).
 
@@ -80,12 +84,12 @@ Also in codesanbox
 ## Install
 
 ```bash
-yarn add mui-color
+yarn add @dmitrychebayewski/mui-color
 ```
 
 Or using npm
 ```bash
-npm install mui-color
+npm install @dmitrychebayewski/mui-color
 ```
 
 ## Usage

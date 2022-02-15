@@ -149,3 +149,15 @@ test('ColorPicker hideTextfield', async () => {
   expect(await queryAllByTestId('colorpicker-input')).toEqual([]);
   expect(await queryAllByTestId('colorpicker-noinput')).toEqual([]);
 });
+
+test('ColorPicker Embedded Outlined colorbutton click', async () => {
+  const onOpen = jest.fn();
+  const { findByTestId, rerender } = render(<ColorPicker value="red" variant="outlined" fullWidth />);
+  let button = await findByTestId('colorpicker-button');
+  fireEvent.click(button);
+  expect(onOpen).toHaveBeenCalledTimes(0);
+  rerender(<ColorPicker value="red" disableTextfield onOpen={onOpen} />);
+  button = await findByTestId('colorpicker-button');
+  fireEvent.click(button);
+  expect(onOpen).toHaveBeenCalledTimes(1);
+});
