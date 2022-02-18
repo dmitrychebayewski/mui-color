@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Button from '@mui/material/Button';
 // import { useTheme } from '@mui/styles';
-import { ColorPicker, useTranslate } from '../src';
+import { AdornedColorPicker, useTranslate } from '../src';
 
 import frFR from '../translations/frFR.json';
 
@@ -26,46 +26,58 @@ const paletteObj = {
 };
 
 export default {
-  title: 'Components|ColorPicker',
-  component: ColorPicker,
+  title: 'Components|AdornedColorPicker',
+  component: AdornedColorPicker,
 };
 
 const style = { margin: '48px' };
 
-export const Basic = () => <ColorPicker defaultValue="#000" />;
+export const Basic = () => <AdornedColorPicker defaultValue="#000" />;
 Basic.story = {
   parameters: { defaultValue: '#000' },
 };
 
-export const Embedded = () => <ColorPicker defaultValue="#000" variant="standard" />;
+export const Embedded = () => (
+  <AdornedColorPicker
+    defaultValue="#000"
+    variant="outlined"
+    fullWidth
+    startAdornment
+    InputProps={{
+      style: {
+        color: 'red',
+      },
+    }}
+  />
+);
 
 Embedded.story = {
-  parameters: { defaultValue: '#000', variant: "outlined", fullWidth: true},
+  parameters: { defaultValue: '#000', variant: 'outlined', fullWidth: true },
 };
 
-export const OpenAtStart = () => <ColorPicker defaultValue="#000" openAtStart />;
+export const OpenAtStart = () => <AdornedColorPicker defaultValue="#000" openAtStart startAdornment />;
 OpenAtStart.story = {
   parameters: { defaultValue: '#000', openAtStart: true },
 };
 
-export const DisableAlpha = () => <ColorPicker defaultValue="#000" disableAlpha />;
+export const DisableAlpha = () => <AdornedColorPicker defaultValue="#000" disableAlpha />;
 DisableAlpha.story = {
   parameters: { defaultValue: '#000', disableAlpha: true },
 };
 
-export const HslGradient = () => <ColorPicker defaultValue="#000" hslGradient />;
+export const HslGradient = () => <AdornedColorPicker defaultValue="#000" hslGradient />;
 HslGradient.story = {
   parameters: { defaultValue: '#000', hslGradient: true },
 };
 
-export const DisablePlain = () => <ColorPicker defaultValue="#000" disablePlainColor />;
+export const DisablePlain = () => <AdornedColorPicker defaultValue="#000" disablePlainColor />;
 DisablePlain.story = {
   parameters: { defaultValue: '#000', disablePlainColor: true },
 };
 
 export const Palette = () => (
   <div>
-    <ColorPicker defaultValue="transparent" palette={paletteObj} />
+    <AdornedColorPicker defaultValue="transparent" palette={paletteObj} />
   </div>
 );
 Palette.story = {
@@ -74,7 +86,7 @@ Palette.story = {
 
 export const Deferred = () => (
   <div style={style}>
-    <ColorPicker defaultValue="red" deferred palette={paletteObj} />
+    <AdornedColorPicker defaultValue="red" deferred palette={paletteObj} />
   </div>
 );
 Deferred.story = {
@@ -93,9 +105,9 @@ const Controller = ({ value }) => {
       <div>
         <div style={{ marginLeft: '-28px', marginTop: '-8px', paddingBottom: '28px', color: '#777', fontSize: '10px' }}>
           <h1>material-ui-color</h1>
-          <h2>ColorPicker example</h2>
+          <h2>AdornedColorPicker example</h2>
         </div>
-        <ColorPicker value={color} palette={paletteObj} onChange={handleChange} />
+        <AdornedColorPicker value={color} palette={paletteObj} onChange={handleChange} />
         <Button variant="outlined" style={{ marginTop: '100px' }} onClick={() => handleChange('rgb(255, 0, 0)')}>
           set rgb(255, 0, 0)
         </Button>
@@ -138,7 +150,7 @@ export const Localization = () => {
   useTranslate(() => ({ i18n: { language }, t: translate }));
   return (
     <div style={style}>
-      <ColorPicker defaultValue="#fe0" deferred palette={paletteObj} />
+      <AdornedColorPicker defaultValue="#fe0" deferred palette={paletteObj} />
       <Button variant="outlined" style={{ marginTop: '100px' }} onClick={handleChange}>
         {language === 'enUS' ? 'english' : 'français'}
       </Button>
@@ -147,13 +159,4 @@ export const Localization = () => {
 };
 Localization.story = {
   parameters: { defaultValue: 'red', palette: paletteObj, deferred: true },
-};
-
-export const HideTextfield = () => (
-  <div style={style}>
-    <ColorPicker defaultValue="red" hideTextfield />
-  </div>
-);
-HideTextfield.story = {
-  parameters: { defaultValue: 'red', hideTextfield: true },
 };

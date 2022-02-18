@@ -11,9 +11,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
 import Popover from '@mui/material/Popover';
-import { StylesProvider, createGenerateClassName } from '@mui/styles';
-import { useStyles } from './ColorPicker.style';
+import { createGenerateClassName, StylesProvider } from '@mui/styles';
+import { useStyles } from './AdornedColorPicker.style';
 
 import ColorButton from './ColorButton';
 import ColorBox from './ColorBox';
@@ -23,7 +24,7 @@ import * as CommonTypes from '../helpers/commonTypes';
 import useTranslate from '../helpers/useTranslate';
 
 const generateClassName = createGenerateClassName({
-  seed: 'ColorPicker',
+  seed: 'AdornedColorPicker',
 });
 
 const getColorText = (color, disablePlainColor) => {
@@ -40,9 +41,8 @@ const getColorText = (color, disablePlainColor) => {
   return text;
 };
 
-const ColorPicker = ({
+const AdornedColorPicker = ({
   value,
-  disableTextfield,
   deferred,
   palette,
   inputFormats,
@@ -52,13 +52,14 @@ const ColorPicker = ({
   doPopup,
   disableAlpha,
   hslGradient,
-  hideTextfield,
   disablePlainColor,
+  startAdornment,
   ...custom
 }) => {
   const classes = useStyles();
   const refPicker = useRef(null);
   const [open, setOpen] = useState(false);
+  const [textFieldProps, setTextFieldProps] = useState(custom);
   const { t, i18n } = useTranslate();
   const color = ColorTool.validateColor(value, disableAlpha, t, i18n.language, disablePlainColor);
   const raw = getColorText(color, disablePlainColor);
@@ -126,26 +127,44 @@ const ColorPicker = ({
     );
   }
 
-  let textField = null;
-  if (!hideTextfield) {
-    textField = disableTextfield ? (
-      <div role="button" data-testid="colorpicker-noinput" onClick={handleClick}>
-        {color.raw}
-      </div>
-    ) : (
-      <TextField color="primary" value={raw} onChange={handleChange} data-testid="colorpicker-input" {...custom} />
-    );
-  }
+  const InputPropsKey = startAdornment ? 'startAdornment' : 'endAdornment';
+  const position = startAdornment ? 'start' : 'end';
+
+  const colorButton = (
+    <InputAdornment position={position}>
+      <ColorButton
+        data-testid="colorpicker-button"
+        className="muicc-colorpicker-button"
+        color={color}
+        style={{ minWidth: 0, right: '0px', background: 0, padding: 0 }}
+        onClick={handleClick}
+      />
+    </InputAdornment>
+  );
+
+  useEffect(() => {
+    setTextFieldProps({
+      ...textFieldProps,
+      InputProps: {
+        ...textFieldProps.InputProps,
+        [InputPropsKey]: colorButton,
+      },
+    });
+  }, []);
+
+  const textField = (
+    <TextField
+      color="primary"
+      value={raw}
+      onChange={handleChange}
+      data-testid="colorpicker-input"
+      {...textFieldProps}
+    />
+  );
 
   return (
     <StylesProvider generateClassName={generateClassName}>
       <div ref={refPicker} className={classes.root}>
-        <ColorButton
-          data-testid="colorpicker-button"
-          className={`muicc-colorpicker-button ${classes.colorPickerButton}`}
-          color={color}
-          onClick={handleClick}
-        />
         {textField}
         {box}
       </div>
@@ -153,9 +172,8 @@ const ColorPicker = ({
   );
 };
 
-ColorPicker.propTypes = {
+AdornedColorPicker.propTypes = {
   value: CommonTypes.color,
-  disableTextfield: PropTypes.bool,
   deferred: PropTypes.bool,
   palette: CommonTypes.palette,
   inputFormats: CommonTypes.inputFormats,
@@ -168,14 +186,12 @@ ColorPicker.propTypes = {
    */
   disableAlpha: PropTypes.bool,
   hslGradient: PropTypes.bool,
-  hideTextfield: PropTypes.bool,
   disablePlainColor: PropTypes.bool,
-  variant: PropTypes.string,
+  startAdornment: PropTypes.bool,
 };
 
-ColorPicker.defaultProps = {
+AdornedColorPicker.defaultProps = {
   value: 'none',
-  disableTextfield: false,
   deferred: false,
   palette: undefined,
   inputFormats: ['hex', 'rgb'],
@@ -184,9 +200,8 @@ ColorPicker.defaultProps = {
   doPopup: undefined,
   disableAlpha: false,
   hslGradient: false,
-  hideTextfield: false,
   disablePlainColor: false,
-  variant: 'standard',
+  startAdornment: false,
 };
 
-export default uncontrolled(ColorPicker);
+export default uncontrolled(AdornedColorPicker);

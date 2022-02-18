@@ -54,6 +54,7 @@ declare module '@dmitrychebayewski/mui-color' {
     inputFormats?: ColorFormat[];
     disableAlpha?: boolean;
     disablePlainColor?: boolean;
+    startAdornment?: boolean;
     onChange: (color: ColorValue) => void;
     onOpen?: (open: boolean) => void;
     openAtStart?: boolean;
@@ -63,6 +64,10 @@ declare module '@dmitrychebayewski/mui-color' {
   interface ColorPickerPaletteProps<T extends PaletteRecord | null> extends ColorPickerProps {
     palette?: T;
   }
+
+  function AdornedColorPicker<T extends PaletteRecord | null>(
+    props: ColorPickerPaletteProps<T> | ColorPickerProps
+  ): JSX.Element;
 
   function ColorPicker<T extends PaletteRecord | null>(
     props: ColorPickerPaletteProps<T> | ColorPickerProps
@@ -89,6 +94,7 @@ declare module '@dmitrychebayewski/mui-color' {
      A tooltip could be added to the button to display the color name or value
      */
     tooltip?: string;
+
   }
 
   function ColorButton(props: ColorButtonProps): JSX.Element;
@@ -139,6 +145,7 @@ declare module '@dmitrychebayewski/mui-color' {
   function createColor(raw: Raw, format?: ColorFormat, disableAlpha?: boolean): Color;
 
   export {
+    AdornedColorPicker,
     ColorPicker,
     ColorPickerProps,
     ColorInput,

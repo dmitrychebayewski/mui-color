@@ -27,7 +27,7 @@ const palette = {
 };
 
 test('ColorPicker should render correctly', () => {
-  const { asFragment } = render(<ColorPicker palette={palette} />);
+  const { asFragment } = render(<ColorPicker palette={palette} variant="standard" />);
   expect(asFragment()).toMatchSnapshot();
 });
 

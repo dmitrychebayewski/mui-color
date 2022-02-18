@@ -11,7 +11,7 @@ const style = { padding: '48px' };
 
 export const Basic = () => (
   <div style={style}>
-    <ColorButton color="" />
+    <ColorButton color="" style={{ minWidth: 0, right: '0px', background: 0, padding: 1 }} />
   </div>
 );
 Basic.story = {
@@ -20,7 +20,7 @@ Basic.story = {
 
 export const Tooltip = () => (
   <div style={style}>
-    <ColorButton color="#ff0000" tooltip="red" />
+    <ColorButton color="#ff0000" tooltip="red" style={{ minWidth: 0, right: '0px', background: 0, padding: 1 }} />
   </div>
 );
 Tooltip.story = {
@@ -29,7 +29,7 @@ Tooltip.story = {
 
 export const Border = () => (
   <div style={style}>
-    <ColorButton color="red" borderWidth={1} />
+    <ColorButton color="red" borderWidth={1} style={{ minWidth: 0, right: '0px', background: 0, padding: 1 }} />
   </div>
 );
 Border.story = {

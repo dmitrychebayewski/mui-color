@@ -42,6 +42,7 @@ const ColorPalette = ({ size, borderWidth, palette, onSelect, disableAlpha }) =>
           size={size}
           key={`${name}`}
           color={palette[name]}
+          style={{ minWidth: 0, right: '0px', background: 0, padding: 1 }}
           className={`muicc-palette-button ${classes.paletteButton}`}
           borderWidth={borderWidth}
           tooltip={name}

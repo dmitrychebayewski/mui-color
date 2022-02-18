@@ -7,6 +7,7 @@
  */
 
 import ColorPicker from './components/ColorPicker';
+import AdornedColorPicker from './components/AdornedColorPicker';
 import ColorButton from './components/ColorButton';
 import ColorBox from './components/ColorBox';
 import ColorInput from './components/ColorInput';
@@ -14,4 +15,4 @@ import ColorPalette from './components/ColorPalette';
 import useTranslate from './helpers/useTranslate';
 import { parse as createColor } from './helpers/colorTool';
 
-export { ColorPicker, ColorButton, ColorBox, ColorInput, ColorPalette, createColor, useTranslate };
+export { AdornedColorPicker, ColorPicker, ColorButton, ColorBox, ColorInput, ColorPalette, createColor, useTranslate };
