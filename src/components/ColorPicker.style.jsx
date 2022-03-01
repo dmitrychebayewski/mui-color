@@ -11,7 +11,7 @@ export const useStyles = makeStyles({
     margin: 0,
     zIndex: 2,
     top: '50%',
-    right: '4%',
+    right: '4px',
     position: 'absolute !important',
     transform: 'translateY(-50%)',
     minWidth: 'unset !important',
