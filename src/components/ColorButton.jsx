@@ -160,6 +160,7 @@ ColorButton.propTypes = {
    Internal usage
    */
   forwardRef: PropTypes.shape({ current: PropTypes.elementType }),
+  className: PropTypes.string,
 };
 
 ColorButton.defaultProps = {
@@ -169,6 +170,7 @@ ColorButton.defaultProps = {
   forwardRef: undefined,
   tooltip: undefined,
   disableAlpha: false,
+  className: undefined,
 };
 
 export default ColorButton;
